@@ -1,6 +1,16 @@
 # 💼 Cadastro de Produtos + Consulta Fiscal para NF-e (Demo Educacional)
 
-Sistema em Python que integra o cadastro de produtos em um arquivo JSON e a consulta de informações tributárias para preenchimento de notas fiscais eletrônicas (NF-e), pensado para **fins educacionais, avaliação técnica** e demonstração de automação.
+Este software foi desenvolvido como uma solução prática para um gargalo administrativo comum: a complexidade no preenchimento de dados tributários em notas fiscais manuais.
+
+O Problema: No ambiente corporativo, a equipe frequentemente precisava interromper o fluxo de trabalho para consultar regras fiscais específicas, memorizar códigos (NCM, CFOP, CST) e calcular alíquotas manualmente. Isso gerava ineficiência e aumentava o risco de erro humano.
+
+A Solução: Criei uma aplicação modular em Python que atua como um facilitador fiscal. O sistema permite:
+
+- Cadastro Simplificado: Armazenamento persistente de produtos em JSON.
+- Inteligência Tributária: O sistema cruza automaticamente o produto com o regime tributário e a região de venda para determinar os impostos corretos.
+- Resultado Imediato: Retorna todos os campos necessários para a emissão da NF, eliminando a necessidade de consulta manual a tabelas externas.
+
+Vale ressaltar que foi pensado para **fins educacionais, avaliação técnica** e demonstração de automação.
 
 > ⚠️ **Atenção:** Este projeto utiliza exemplos fictícios de alíquotas e regras fiscais, NÃO utilize para fins fiscais reais em produção. Consulte sempre um especialista tributário!
 
@@ -110,25 +120,9 @@ Este projeto demonstra:
 
 ---
 
-## 🤝 Integração e Valor Profissional
-
-- O projeto demonstra capacidade de **modelagem de fluxo completo** (cadastro, consulta, integração de dados e lógica tributária).
-- Modularizado para facilitar manutenção ou futura integração com outras aplicações (ex: web, sistemas fiscais reais).
-- Referência a boas práticas de documentação, comentários e exposição educacional de código.
-
-> 💡 [Veja também: Projeto complementar de consulta fiscal automatizada](https://github.com/seuusuario/consulta-fiscal-demo) — produtos cadastrados podem ser usados em ambos projetos!
-
----
-
-## 📄 Licença
-
-Código aberto sob licença MIT para fins educacionais e demonstração.
-
----
-
 ## 👤 Sobre o autor
 
-Desenvolvido por [Seu Nome](https://www.linkedin.com/in/seu-perfil)  
-Contato: seu@email.com
+Desenvolvido por [Edinor de Souza Neto](https://www.linkedin.com/in/edinor-de-souza-neto/)
+Contato: edinorneto41@gmail.com
 
 Se gostou do projeto, deixe uma estrela ⭐, contribua ou entre em contato!
