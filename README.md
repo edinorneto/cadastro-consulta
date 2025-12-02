@@ -57,23 +57,16 @@ Este projeto demonstra:
     cd cadastro-produtos-fiscal-demo
     ```
 
-2. **(Opcional) Crie um ambiente virtual:**
-    ```bash
-    python -m venv .venv
-    source .venv/bin/activate  # Unix/macOS
-    .venv\Scripts\activate     # Windows
-    ```
-
-3. **Rode o sistema:**
+2. **Rode o sistema:**
     ```bash
     python main.py
     ```
 
-4. **Siga o menu:**
+3. **Siga o menu:**
     - `Cadastrar novo produto`: basta seguir as perguntas.
     - `Consultar tributos para Nota Fiscal`: escolha o produto, regime (Convênio 100/97 ou TTD 409) e destino.
 
-5. **Exemplo de uso** (saída resumida):
+4. **Exemplo de uso** (saída resumida):
 
     ```
     Bem-vindo ao Gerenciador de Produtos e Tributos Fiscais!
