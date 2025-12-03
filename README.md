@@ -1,4 +1,4 @@
-# 💼 Cadastro de Produtos + Consulta Fiscal para NF-e (Demo Educacional)
+# 💼 Cadastro de Produtos + Consulta Fiscal para NF-e
 
 Este software foi desenvolvido como uma solução prática para um gargalo administrativo comum: a complexidade no preenchimento de dados tributários em notas fiscais manuais.
 
