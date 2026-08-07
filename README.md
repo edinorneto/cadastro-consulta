@@ -1,98 +1,101 @@
 # 💼 Cadastro de Produtos + Consulta Fiscal para NF-e
 
-Este software foi desenvolvido como uma solução prática para um gargalo administrativo comum: a complexidade no preenchimento de dados tributários em notas fiscais manuais.
-
-O Problema: No ambiente corporativo, a equipe frequentemente precisava interromper o fluxo de trabalho para consultar regras fiscais específicas, memorizar códigos (NCM, CFOP, CST) e calcular alíquotas manualmente. Isso gerava ineficiência e aumentava o risco de erro humano.
-
-A Solução: Criei uma aplicação modular em Python que atua como um facilitador fiscal. O sistema permite:
-
-- Cadastro Simplificado: Armazenamento persistente de produtos em JSON.
-- Inteligência Tributária: O sistema cruza automaticamente o produto com o regime tributário e a região de venda para determinar os impostos corretos.
-- Resultado Imediato: Retorna todos os campos necessários para a emissão da NF, eliminando a necessidade de consulta manual a tabelas externas.
-
-Vale ressaltar que foi pensado para **fins educacionais, avaliação técnica** e demonstração de automação.
-
-> ⚠️ **Atenção:** Este projeto utiliza exemplos fictícios de alíquotas e regras fiscais, NÃO utilize para fins fiscais reais em produção. Consulte sempre um especialista tributário!
+> **⚠️ Aviso:** Este projeto utiliza dados e regras fiscais **fictícias**, criados exclusivamente para fins de aprendizado e portfólio. Não utilize para fins fiscais reais. Consulte sempre um especialista tributário.
 
 ---
 
-## 🚀 Visão Geral
+## 🔗 Contexto: Ponto de Partida de uma Série de Projetos
 
-Este projeto demonstra:
-- Um fluxo completo para pequenas empresas/agro: **cadastre produtos** e depois **consulte os tributos necessários** para emitir NF-e de maneira prática.
-- Modularidade: Cadastro e consulta estão desacoplados, podendo ser evoluídos separadamente.
-- Interface 100% em Python de terminal, fácil de expandir e integrar.
+Este é o **projeto original** de uma série de soluções para o domínio fiscal. Após desenvolvê-lo como aplicação de terminal em Python, o mesmo domínio de negócio foi **evoluído e reimaginado** como aplicação web em PHP, com arquitetura multi-arquivo, CRUD completo e interface visual:
+
+👉 **[tax-rule-php](https://github.com/edinorneto/tax-rule-php)** — versão web com CRUD completo e design system
+
+Essa progressão demonstra a evolução de uma solução funcional de terminal para uma aplicação web com maior separação de responsabilidades e interface para o usuário.
 
 ---
 
-## 📂 Estrutura do Projeto
+## 💡 O Problema
+
+No ambiente corporativo, preencher dados tributários em notas fiscais exige consultar regras específicas por regime e região, memorizar códigos (NCM, CFOP, CST) e calcular alíquotas manualmente — um processo sujeito a erros que interrompe o fluxo de trabalho da equipe.
+
+## ✅ A Solução
+
+Aplicação modular em Python que atua como facilitador fiscal via terminal:
+
+- **Cadastro persistente** de produtos em JSON
+- **Inteligência tributária:** cruza produto × regime × região para retornar dados fiscais corretos
+- **Resultado imediato:** retorna CFOP, CST, ICMS, IPI, PIS e COFINS sem consulta manual a tabelas externas
+
+---
+
+## 🗂️ Arquitetura
 
 ```
-├── main.py              # Menu principal (cadastro ou consulta de tributos para NF)
-├── config.py            # Caminho dos arquivos/settings globais
-├── data.py              # Funções de leitura/salvamento de dados JSON
-├── interface.py         # Funções de UI/texto/input/output
-├── dados.py             # Base de dados fiscal genérica/fictícia
-├── cadastro_produtos.json  # Exemplo de base de produtos (podem ser criados pelo usuário)
+├── main.py                   # Menu principal — ponto de entrada da aplicação
+├── config.py                 # Constantes e caminhos globais
+├── data.py                   # Funções de leitura/escrita em JSON — camada de dados isolada
+├── dados.py                  # Base de dados fiscal fictícia (regimes × regiões × alíquotas)
+├── interface.py              # Funções de UI: menus, inputs e outputs formatados
+└── cadastro_produtos.json    # Persistência dos produtos cadastrados (gerado automaticamente)
 ```
+
+**Decisão de design:** separação explícita entre a camada de dados (`data.py`), as regras de negócio (`dados.py`) e a interface (`interface.py`) — a mesma lógica de separação de responsabilidades foi evoluída e formalizada na versão PHP.
+
+---
+
+## 🛠 Tech Stack
+
+- **Python 3.x**
+- **JSON** — persistência de dados
+- **Git & GitHub** — versionamento
 
 ---
 
 ## ✨ Funcionalidades
 
-- Cadastro guiado de produtos (nome, categoria, NCM, preço, unidade, estoque, etc.)
-- Geração automática de ID e data/hora de cadastro
-- Consulta de produtos cadastrados já com estoque atualizado
-- Seleção do regime tributário e da região de venda (simulando lógica real de nota fiscal)
-- Cálculo e exibição dos dados fiscais (CFOP, CST, ICMS, IPI, PIS, COFINS) conforme a escolha
-- Tudo salvo em `cadastro_produtos.json`, facilmente portável
+- Cadastro guiado de produtos (nome, categoria, NCM, preço, unidade, estoque, status ativo/inativo)
+- Geração automática de ID sequencial e timestamp de cadastro
+- Consulta fiscal por produto × regime tributário × região de destino
+- Retorno estruturado: CFOP, CST, código de tributação, ICMS, IPI, PIS, COFINS
+- Dados persistidos em JSON — portáveis e consultáveis sem banco de dados
 
 ---
 
-## 📝 Como Usar
+## 🚀 Como Usar
 
-1. **Clone o repositório:**
-    ```bash
-    git clone https://github.com/seuusuario/cadastro-produtos-fiscal-demo.git
-    cd cadastro-produtos-fiscal-demo
-    ```
+```bash
+git clone https://github.com/edinorneto/cadastro-consulta.git
+cd cadastro-consulta
+python main.py
+```
 
-2. **Rode o sistema:**
-    ```bash
-    python main.py
-    ```
+**Exemplo de fluxo:**
 
-3. **Siga o menu:**
-    - `Cadastrar novo produto`: basta seguir as perguntas.
-    - `Consultar tributos para Nota Fiscal`: escolha o produto, regime (Convênio 100/97 ou TTD 409) e destino.
+```
+Bem-vindo ao Gerenciador de Produtos e Tributos Fiscais!
+1. Cadastrar novo produto
+2. Consultar tributos para Nota Fiscal
+3. Sair
 
-4. **Exemplo de uso** (saída resumida):
+Escolha uma opção: 2
 
-    ```
-    Bem-vindo ao Gerenciador de Produtos e Tributos Fiscais!
-    1. Cadastrar novo produto
-    2. Consultar tributos para Nota Fiscal
-    3. Sair
-    Escolha uma opção: 2
+Produtos disponíveis:
+1. Ureia Agrícola | Fertilizante | R$ 1500,00 | 1000 kg
 
-    Produtos disponíveis:
-    1. Ureia Agrícola
-        Categoria: Fertilizante
-        Preço: R$ 1500,00 | Quantidade: 1000kg
-        Descrição: Produto para uso agrícola
+Escolha o produto: 1
+Regime (1. Convênio 100/97 | 2. TTD 409): 1
+Venda (1. Interna SC | 2. Externa): 2
+Estado (PR, RS, MT, MS): PR
 
-    Escolha o número do produto: 1
-    Regime (1. Convênio 100/97 | 2. TTD 409): 1
-    Venda (1. Interna SC | 2. Externa): 2
-    Estado (PR, RS, MT, MS): PR
-
-    ===== INFORMAÇÕES PARA SUA NOTA FISCAL =====
-    [saída formatada]
-    ```
+===== INFORMAÇÕES PARA SUA NOTA FISCAL =====
+CFOP:  6102 – Venda interestadual nacional
+CST:   7 – Importada sem similar nacional
+ICMS:  6,0%  |  IPI: 0%  |  PIS: 0%  |  COFINS: 0%
+```
 
 ---
 
-## 📊 Exemplo de cadastro_produtos.json
+## 📊 Exemplo de `cadastro_produtos.json`
 
 ```json
 [
@@ -113,9 +116,15 @@ Este projeto demonstra:
 
 ---
 
-## 👤 Sobre o autor
+## 🧠 Conceitos Aplicados
 
-Desenvolvido por [Edinor de Souza Neto](https://www.linkedin.com/in/edinor-de-souza-neto/)
-Contato: edinorneto41@gmail.com
+`Python 3.x` · `CLI Design` · `Modularização` · `Separação de responsabilidades` · `Persistência JSON` · `Regras de negócio fiscal` · `Git & GitHub`
 
-Se gostou do projeto, deixe uma estrela ⭐, contribua ou entre em contato!
+---
+
+## 👤 Autor
+
+**Edinor de Souza Neto**
+[LinkedIn](https://www.linkedin.com/in/edinor-de-souza-neto/) · [GitHub](https://github.com/edinorneto)
+
+Se gostou do projeto, deixe uma ⭐ — e veja a evolução dele em [tax-rule-php](https://github.com/edinorneto/tax-rule-php)!
